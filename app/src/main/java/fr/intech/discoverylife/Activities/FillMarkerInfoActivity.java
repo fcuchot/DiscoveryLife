@@ -8,9 +8,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import fr.intech.discoverylife.R;
 
@@ -20,6 +22,14 @@ public class FillMarkerInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fill_marker_info);
+        Bundle bundle = getIntent().getExtras();
+//        private static final String TAG = "MyActivity";
+//        Log.i(TAG,)
+        if(bundle.getString("Lat")!= null)
+        {
+  EditText lat = (EditText) findViewById(R.id.Lat);
+           lat.setText(bundle.getString("Lat"));
+        }
 
         final EditText name = (EditText) findViewById(R.id.personName);
 

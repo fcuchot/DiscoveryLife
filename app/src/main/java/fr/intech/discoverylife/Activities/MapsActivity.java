@@ -52,13 +52,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                                                          @Override
                                                                          public void onMapClick(LatLng point) {
-                                                                             Intent myIntent = new Intent(MapsActivity.this, FillMarkerInfoActivity.class);
-//                                                                             myIntent.putExtra("key", value); //Optional parameters
-                                                                             MapsActivity.this.startActivity(myIntent);
+
                                                                              MarkerOptions marker = new MarkerOptions()
                                                                                      .position(new LatLng(point.latitude, point.longitude))
                                                                                      .title("New Marker").snippet("test");
                                                                              mMap.addMarker(marker);
+                                                                             Intent myIntent = new Intent(MapsActivity.this, FillMarkerInfoActivity.class);
+//                                                                             myIntent.putExtra("key", value); //Optional parameters
+                                                                             myIntent.putExtra("Lat",point.latitude);
+                                                                             myIntent.putExtra("Lng",point.longitude);
+                                                                             MapsActivity.this.startActivity(myIntent);
                                                                          }
                                      });
 
