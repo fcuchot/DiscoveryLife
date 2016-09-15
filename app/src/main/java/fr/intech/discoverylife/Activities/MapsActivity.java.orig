@@ -1,0 +1,47 @@
+package fr.intech.discoverylife.Activities;
+
+import android.os.Bundle;
+<<<<<<< HEAD:app/src/main/java/fr/intech/discoverylife/Activities/MapsActivity.java
+
+import  fr.intech.discoverylife.Classes.Landmark;
+import  fr.intech.discoverylife.Databases.DBHandler;
+=======
+import android.support.v4.app.FragmentActivity;
+>>>>>>> Display Map:app/src/main/java/fr/intech/discoverylife/MapsActivity.java
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import fr.intech.discoverylife.Classes.Landmark;
+import fr.intech.discoverylife.Databases.DBHandler;
+import fr.intech.discoverylife.R;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_maps);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+    @Override
+<<<<<<< HEAD:app/src/main/java/fr/intech/discoverylife/Activities/MapsActivity.java
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+
+        // Add a marker in Sydney and move the camera
+=======
+    public void onMapReady(GoogleMap map) {
+        // Add a marker in Sydney, Australia, and move the camera.
+>>>>>>> Display Map:app/src/main/java/fr/intech/discoverylife/MapsActivity.java
+        LatLng sydney = new LatLng(-34, 151);
+        map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+}
