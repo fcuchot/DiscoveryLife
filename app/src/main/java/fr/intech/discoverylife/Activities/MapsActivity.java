@@ -57,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                                                              MapsActivity.this.startActivity(myIntent);
                                                                              MarkerOptions marker = new MarkerOptions()
                                                                                      .position(new LatLng(point.latitude, point.longitude))
-                                                                                     .title("New Marker").snippet();
+                                                                                     .title("New Marker").snippet("test");
                                                                              mMap.addMarker(marker);
                                                                          }
                                      });
