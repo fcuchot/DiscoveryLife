@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="locinfo" type="id" />
+    <item name="menu_legalnotices" type="id" />
+    <item name="personName" type="id" />
+    <item name="submit" type="id" />
+</resources>
