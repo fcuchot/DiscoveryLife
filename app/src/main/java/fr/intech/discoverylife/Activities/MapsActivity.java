@@ -3,6 +3,8 @@ package fr.intech.discoverylife.Activities;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import  fr.intech.discoverylife.Classes.Landmark;
+import  fr.intech.discoverylife.Databases.DBHandler;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -10,6 +12,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import fr.intech.discoverylife.Classes.Landmark;
+import fr.intech.discoverylife.Databases.DBHandler;
 import fr.intech.discoverylife.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -39,6 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);

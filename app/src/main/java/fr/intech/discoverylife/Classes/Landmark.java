@@ -9,16 +9,29 @@ public class Landmark {
     private String title;
     private String description;
     private int idUser;
+    private float latitude;
+    private float longitude;
 
     public Landmark()
     {
     }
-    public Landmark(int id, String title, String description, int idUser)
+    public Landmark(int id, String title, String description, int idUser, float latitude, float longitude)
     {
         this.id=id;
         this.title=title;
         this.description=description;
         this.idUser = idUser;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Landmark(String title, String description, int idUser, float latitude, float longitude)
+    {
+        this.title=title;
+        this.description=description;
+        this.idUser = idUser;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public void setId(int id) {
@@ -37,6 +50,10 @@ public class Landmark {
         this.idUser = idUser;
     }
 
+    public void setLatitude(float latitude) { this.latitude = latitude;}
+
+    public  void setLongitude(float longitude) {this.longitude = longitude;}
+
     public int getId() {
         return id;
     }
@@ -52,4 +69,8 @@ public class Landmark {
     public int getIdUser(){
         return idUser;
     }
+
+    public float getLongitude() { return  longitude;}
+
+    public float  getLatitude() { return latitude;}
 }
