@@ -1,55 +1,76 @@
 package fr.intech.discoverylife.Activities;
 
-import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
+import fr.intech.discoverylife.Databases.DBHandler;
+import fr.intech.discoverylife.Classes.Landmark;
 
-import  fr.intech.discoverylife.Classes.Landmark;
-import  fr.intech.discoverylife.Databases.DBHandler;
+import android.location.Location;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import fr.intech.discoverylife.Classes.Landmark;
+import java.util.List;
+
 import fr.intech.discoverylife.Databases.DBHandler;
 import fr.intech.discoverylife.R;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
-    private GoogleMap mMap;
-
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        com.google.android.gms.location.LocationListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+    public void onMapReady(GoogleMap map) {
+        // Add a marker in Sydney, Australia, and move the camera.
+        DBHandler connection = new DBHandler(this);
+        List<Landmark> userLandmark = connection.getAllLandmarks(1);
+
+        for (int i = 0; i < userLandmark.size(); i++){
+            map.addMarker(new MarkerOptions().position(new LatLng(
+                    userLandmark.get(i).getLatitude(), userLandmark.get(i).getLongitude())).title(userLandmark.get(i).getTitle()).snippet(userLandmark.get(i).getDescription()));
+        }
+
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(48.866667, 2.333333), 10));
+
+    }
 
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
