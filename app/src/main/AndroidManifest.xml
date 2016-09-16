@@ -41,6 +41,10 @@
         </activity>
 
         <activity android:name=".Activities.landmarkManagementActivity"></activity>
+        <activity
+            android:name=".Activities.FillMarkerInfoActivity"
+            android:label="@string/title_activity_fill_marker_info"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>

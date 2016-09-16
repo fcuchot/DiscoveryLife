@@ -1,6 +1,7 @@
 package fr.intech.discoverylife.Activities;
 
 import fr.intech.discoverylife.Databases.DBHandler;
+import android.content.Intent;
 import fr.intech.discoverylife.Classes.Landmark;
 
 import android.Manifest;
@@ -74,6 +75,7 @@ public class MapsActivity extends AppCompatActivity implements
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
     }
+
 
     @Override
     public void onPause() {
