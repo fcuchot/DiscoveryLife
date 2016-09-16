@@ -37,10 +37,11 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABlE_LANDMARK + "("
-                + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_TITLE + " TEXT NOT NULL,"
-                + COLUMN_Description + " TEXT," + COLUMN_IDUSER + "INTEGER NOT NULL," + COLUMN_LATITUDE + "FLOAT( 10, 6 ) NOT NULL,"
-                + COLUMN_LONGITUDE + "FLOAT( 10, 6 ) NOT NULL" + ")";
+                + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_TITLE + " TEXT NOT NULL, "
+                + COLUMN_Description + " TEXT, " + COLUMN_IDUSER + " INTEGER NOT NULL, " + COLUMN_LATITUDE + " FLOAT( 10, 6 ) NOT NULL, "
+                + COLUMN_LONGITUDE + " FLOAT( 10, 6 ) NOT NULL" + ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
+
     }
 
     @Override
@@ -70,7 +71,7 @@ public class DBHandler extends SQLiteOpenHelper {
         List<Landmark> landmarkList = new ArrayList<Landmark>();
 
         // Select All Query
-        String selectQuery = "SELECT * FROM " + TABlE_LANDMARK + "WHERE " + COLUMN_IDUSER + "==" + idUser;
+        String selectQuery = "SELECT * FROM " + TABlE_LANDMARK + " WHERE " + COLUMN_IDUSER + " == " + idUser;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
