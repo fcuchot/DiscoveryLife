@@ -87,13 +87,32 @@ public class MapsActivity extends AppCompatActivity implements
         }
     }
 
+
+
+
     @Override
     public void onMapReady(GoogleMap map) {
 
         mGoogleMap = map;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
+        mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
+                                             @Override
+                                             public void onMapClick(LatLng point) {
+
+                                                 MarkerOptions marker = new MarkerOptions()
+                                                         .position(new LatLng(point.latitude, point.longitude))
+                                                         .title("New Marker").snippet("test");
+                                                 mGoogleMap.addMarker(marker);
+                                                 Intent myIntent = new Intent(MapsActivity.this, FillMarkerInfoActivity.class);
+//                                                                             myIntent.putExtra("key", value); //Optional parameters
+                                                 myIntent.putExtra("Lat", point.latitude);
+                                                 myIntent.putExtra("Lng", point.longitude);
+                                                 MapsActivity.this.startActivity(myIntent);
+                                             }
+
+                                         });
         //get all landmarks for this user
         List<Landmark> userLandmark = connection.getAllLandmarks(1);
         if (userLandmark.size() != 0) {
@@ -119,7 +138,7 @@ public class MapsActivity extends AppCompatActivity implements
         }
 
         //map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(48.866667, 2.333333), 10));
-    }
+              }
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
